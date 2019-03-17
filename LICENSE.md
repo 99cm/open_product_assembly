@@ -1,4 +1,4 @@
-Copyright © 2007-2015, Spree Commerce Inc. and other contributors.
+Copyright © 2019, Leo Wang and other contributors.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,

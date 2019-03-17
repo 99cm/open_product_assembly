@@ -1,4 +1,4 @@
-class CreatePartLineItems < SpreeExtension::Migration[4.2]
+class CreatePartLineItems < ActiveRecord::Migration[5.2]
   def change
     create_table :spree_part_line_items do |t|
       t.belongs_to :line_item, null: false

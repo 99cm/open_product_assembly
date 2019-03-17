@@ -53,7 +53,7 @@ module Spree
 
       it "verifies inventory units via OrderInventoryAssembly" do
         allow(OrderInventoryAssembly).to receive(:new).with(line_item) { inventory }
-        allow(inventory).to              receive(:verify).with(line_item.target_shipment)
+        allow(inventory).to receive(:verify).with(line_item.target_shipment)
         line_item.quantity = 2
         line_item.save
       end
@@ -62,7 +62,7 @@ module Spree
     context "updates regular line item" do
       it "verifies inventory units via OrderInventory" do
         allow(OrderInventory).to receive(:new).with(line_item.order, line_item) { inventory }
-        allow(inventory).to      receive(:verify).with(line_item.target_shipment)
+        allow(inventory).to receive(:verify).with(line_item.target_shipment)
         line_item.quantity = 2
         line_item.save
       end

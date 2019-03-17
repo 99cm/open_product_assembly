@@ -1,6 +1,6 @@
 describe Spree::Product, type: :model do
   before do
-    @product = create(:product, name: "Foo Bar")
+    @product = FactoryBot.create(:product, name: "Foo Bar")
     @master_variant = Spree::Variant.where(is_master: true).find_by_product_id(@product.id)
   end
 

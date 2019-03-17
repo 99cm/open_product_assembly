@@ -3,5 +3,5 @@ Gemfile.lock
 coverage
 .ruby-gemset
 .ruby-version
-gemfiles/*.gemfile.lock
+pkg/
 *.gem

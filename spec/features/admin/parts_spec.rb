@@ -1,8 +1,8 @@
 RSpec.feature "Managing parts for a product bundle", type: :feature, js: true do
   stub_authorization!
 
-  given!(:tshirt) { create(:product, :name => "T-Shirt") }
-  given!(:mug) { create(:product, :name => "Mug", can_be_part: true) }
+  given!(:tshirt) { create(:product, name: 'T-Shirt') }
+  given!(:mug) { create(:product, name: 'Mug', can_be_part: true) }
 
   context "when searching for parts" do
     background do

@@ -1,10 +1,7 @@
 module Spree
   class AssembliesPart < ActiveRecord::Base
-    belongs_to :assembly, class_name: "Spree::Variant",
-                          foreign_key: "assembly_id",
-                          touch: true
-
-    belongs_to :part, class_name: "Spree::Variant", foreign_key: "part_id"
+    belongs_to :assembly, class_name: 'Spree::Variant', foreign_key: 'assembly_id', touch: true
+    belongs_to :part, class_name: 'Spree::Variant', foreign_key: "part_id"
 
     delegate :name, :sku, to: :part
 
@@ -16,7 +13,7 @@ module Spree
 
     def options_text
       if variant_selection_deferred?
-        Spree.t(:user_selectable)
+        I18n.t('spree.user_selectable')
       else
         part.options_text
       end

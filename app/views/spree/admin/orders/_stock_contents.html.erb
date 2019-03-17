@@ -4,18 +4,16 @@
   <tr class="edit-method is-hidden total">
     <td colspan="5">
       <div class="field alpha five columns">
-        <%= label_tag 'selected_shipping_rate_id', Spree.t(:shipping_method) %>
+        <%= label_tag 'selected_shipping_rate_id', I18n.t('spree.shipping_method') %>
         <%= select_tag :selected_shipping_rate_id,
               options_for_select(shipment.shipping_rates.map {|sr| ["#{sr.name} #{sr.display_price}", sr.id] }, shipment.selected_shipping_rate_id),
-              {:class => 'select2 fullwidth', :data => {'shipment-number' => shipment.number } } %>
+              { class: 'select2 fullwidth', data: { 'shipment-number': shipment.number } } %>
       </div>
     </td>
     <td class="actions">
       <% if can? :update, shipment %>
-        <%= link_to_with_icon 'ok', Spree.t('actions.save'), '#', :class => 'save-method btn btn-default btn-sm',
-          :data => {'shipment-number' => shipment.number, :action => 'save'}, title: Spree.t('actions.save'), :no_text => true %>
-        <%= link_to_with_icon 'delete', Spree.t('actions.cancel'), '#', :class => 'cancel-method btn btn-sm btn-danger',
-          :data => {:action => 'cancel'}, :title => Spree.t('actions.cancel'), :no_text => true %>
+        <%= link_to_with_icon 'ok', I18n.t('spree.actions.save'), '#', class: 'save-method btn btn-default btn-sm', data: { 'shipment-number': shipment.number, action: 'save' }, title: I18n.t('spree.actions.save'), no_text: true %>
+        <%= link_to_with_icon 'delete', I18n.t('spree.actions.cancel'), '#', class: 'cancel-method btn btn-sm btn-danger', data: { action: 'cancel' }, title: I18n.t('spree.actions.cancel'), no_text: true %>
       <% end %>
     </td>
   </tr>
@@ -30,12 +28,12 @@
       <span><%= shipment.display_cost %></span>
     </td>
   <% else %>
-    <td colspan='5'><%= Spree.t(:no_shipping_method_selected) %></td>
+    <td colspan='5'><%= I18n.t('spree.no_shipping_method_selected') %></td>
   <% end %>
 
   <td class="actions">
     <% if can? :update, shipment %>
-      <%= link_to_with_icon 'edit', Spree.t('actions.edit'), '#', :class => 'edit-method btn btn-primary btn-sm', :no_text => true, :data => {:action => 'edit'}, :title => Spree.t('edit') %>
+      <%= link_to_with_icon 'edit', I18n.t('spree.actions.edit'), '#', class: 'edit-method btn btn-primary btn-sm', no_text: true, data: { action: 'edit'}, title: I18n.t('spree.edit') %>
     <% end %>
   </td>
 </tr>
@@ -47,8 +45,8 @@
   </td>
   <td class="actions">
     <% if can? :update, shipment %>
-      <%= link_to_with_icon 'save', Spree.t('actions.save'), '#', :class => 'save-tracking btn btn-success btn-sm', :no_text => true, :data => {'shipment-number' => shipment.number, :action => 'save'}, :title => Spree.t('actions.save') %>
-      <%= link_to_with_icon 'cancel', Spree.t('actions.cancel'), '#', :class => 'cancel-tracking btn btn-default btn-sm', :no_text => true, :data => {:action => 'cancel'}, :title => Spree.t('actions.cancel') %>
+      <%= link_to_with_icon 'save', I18n.t('spree.actions.save'), '#', class: 'save-tracking btn btn-success btn-sm', no_text: true, data: { 'shipment-number': shipment.number, action: 'save'}, title: I18n.t('spree.actions.save') %>
+      <%= link_to_with_icon 'cancel', I18n.t('spree.actions.cancel'), '#', class: 'cancel-tracking btn btn-default btn-sm', no_text: true, data: { action: 'cancel' }, title: I18n.t('spree.actions.cancel') %>
     <% end %>
   </td>
 </tr>
@@ -56,14 +54,14 @@
 <tr class="show-tracking total">
   <td colspan="5">
     <% if shipment.tracking.present? %>
-      <strong><%= Spree.t(:tracking) %>:</strong> <%= shipment.tracking %>
+      <strong><%= I18n.t('spree.tracking') %>:</strong> <%= shipment.tracking %>
     <% else %>
-      <%= Spree.t(:no_tracking_present) %>
+      <%= I18n.t('spree.no_tracking_present') %>
     <% end %>
   </td>
   <td class="actions">
     <% if can? :update, shipment %>
-      <%= link_to_with_icon 'edit', Spree.t('actions.save'), '#', :class => 'edit-tracking btn btn-primary btn-sm', :no_text => true, :data => {:action => 'edit'}, :title => Spree.t('edit') %>
+      <%= link_to_with_icon 'edit', I18n.t('spree.actions.save'), '#', class: 'edit-tracking btn btn-primary btn-sm', no_text: true, data: { action: 'edit' }, title: I18n.t('spree.edit') %>
     <% end %>
   </td>
 </tr>

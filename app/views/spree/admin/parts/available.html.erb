@@ -2,10 +2,10 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%= Spree.t(:name) %></th>
-      <th><%= Spree.t(:options) %></th>
-      <th><%= Spree.t(:variants) %></th>
-      <th><%= Spree.t(:qty) %></th>
+      <th><%= I18n.t('spree.name') %></th>
+      <th><%= I18n.t('spree.options') %></th>
+      <th><%= I18n.t('spree.variants') %></th>
+      <th><%= I18n.t('spree.qty') %></th>
       <th></th>
     </tr>
   </thead>
@@ -20,11 +20,11 @@
             <%- opts = part.variants.map {|v| [variant_options(v), v.id] } %>
             <%= select_tag "part[id]",
               options_for_select(opts),
-              include_blank: Spree.t(:user_selectable), class: 'part_selector select2'
+              include_blank: I18n.t('spree.user_selectable'), class: 'part_selector select2'
             %>
           <% else %>
             <%= hidden_field_tag "part[id]", part.master.id %>
-            <%= Spree.t(:no_variants) %>
+            <%= I18n.t('spree.no_variants') %>
           <% end %>
         </td>
         <% unless product.has_variants? %>
@@ -34,16 +34,15 @@
         <% end %>
         <td><%= text_field_tag "part[count]", 1 %></td>
         <td class="actions">
-          <%= image_tag "spinner.gif", :style => "display:none", :class => "spinner" %>
           <%= link_to_with_icon('add', Spree.t(:select),
                       admin_product_parts_path(product),
-                      :data => { 'target' => dom_id(part), 'master-variant-id' => part.master.id},
-                      :class => "add_product_part_link") %>
+                      data: { 'target' => dom_id(part), 'master-variant-id' => part.master.id},
+                      class: 'add_product_part_link') %>
         </td>
       </tr>
     <% end %>
     <% if @available_products.empty? %>
-     <tr><td colspan="3"><%= Spree.t(:no_match_found) %>.</td></tr>
+     <tr><td colspan="3"><%= I18n.t('spree.no_match_found') %>.</td></tr>
     <% end %>
   </tbody>
 </table>

@@ -1,17 +1,17 @@
 <% shipment.manifest.each do |item| %>
-  <tr class="stock-item" data-item-quantity="<%= item.quantity %>">
+  <tr class="stock-item" data-item-quantity="<%= item.quantity %>"  data-variant-id="<%= item.variant.id %>">
     <td class="item-image image text-center">
-      <%= mini_image(item.variant) %>
+      <%= image_tag main_app.url_for(item.variant.images.first.url(:mini)) %>
     </td>
 
     <td class="item-name">
-      <%= item.variant.product.name %><br><%= "(" + variant_options(item.variant) + ")" unless item.variant.option_values.empty? %>
+      <%= item.variant.product.name %><br><%= "(" + variant_options(item.variant) + ")" if item.variant.option_values.any? %>
       <% if item.variant.sku.present? %>
-        <strong><%= Spree.t(:sku) %>:</strong> <%= item.variant.sku %>
+        <strong><%= I18n.t('spree.sku') %>:</strong> <%= item.variant.sku %>
       <% end %>
 
       <% if item.part && item.line_item %>
-        <strong><%= Spree.t(:part_of_bundle, sku: item.product.sku) %></strong>
+        <strong><%= I18n.t('spree.part_of_bundle', sku: item.product.sku) %></strong>
       <% end %>
     </td>
 
@@ -19,7 +19,7 @@
 
     <td class="item-qty-show text-center">
       <% item.states.each do |state,count| %>
-        <%= count %> x <%= Spree.t(state).downcase %>
+        <%= count %> x <%= I18n.t('spree.state').downcase %>
       <% end %>
     </td>
 
@@ -35,11 +35,11 @@
 
     <td class="cart-item-delete actions actions-3 text-center" data-hook="cart_item_delete">
       <% if((!shipment.shipped?) && can?(:update, item.line_item)) %>
-        <%= link_to_with_icon 'pencil', Spree.t('actions.edit'), "#", class: 'edit-item btn btn-default btn-sm', title: Spree.t('actions.edit'), no_text: true %>
-        <%= link_to_with_icon 'cancel', Spree.t('actions.cancel'), "#", class: 'cancel-item  btn btn-primary btn-sm', data: { action: 'cancel' }, title: Spree.t('actions.cancel'), style: 'display: none', no_text: true %>
-        <%= link_to_with_icon 'ok', Spree.t('actions.save'), "#", class: 'save-item btn btn-success btn-sm', data: {'shipment-number' => shipment.number, 'variant-id' => item.variant.id, action: 'save'}, title: Spree.t('actions.save'), style: 'display: none', no_text: true %>
-        <%= link_to_with_icon 'split', Spree.t('split'), "#", class: 'split-item btn btn-primary btn-sm', data: {action: 'split', 'variant-id' => item.variant.id}, title: Spree.t('split'), no_text: true %>
-        <%= link_to_with_icon 'delete', Spree.t('delete'), "#", class: 'delete-item btn btn-danger btn-sm', data: { 'shipment-number' => shipment.number, 'variant-id' => item.variant.id, action: 'remove'}, title: Spree.t('delete'), no_text: true %>
+        <%= link_to_with_icon 'pencil', I18n.t('spree.actions.edit'), "#", class: 'edit-item btn btn-default btn-sm', title: I18n.t('spree.actions.edit'), no_text: true %>
+        <%= link_to_with_icon 'cancel', I18n.t('spree.actions.cancel'), "#", class: 'cancel-item  btn btn-primary btn-sm', data: { action: 'cancel' }, title: I18n.t('spree.actions.cancel'), style: 'display: none', no_text: true %>
+        <%= link_to_with_icon 'ok', I18n.t('spree.actions.save'), "#", class: 'save-item btn btn-success btn-sm', data: {'shipment-number' => shipment.number, 'variant-id' => item.variant.id, action: 'save'}, title: I18n.t('spree.actions.save'), style: 'display: none', no_text: true %>
+        <%= link_to_with_icon 'split', I18n.t('spree.split'), "#", class: 'split-item btn btn-primary btn-sm', data: {action: 'split', 'variant-id' => item.variant.id}, title: I18n.t('spree.split'), no_text: true %>
+        <%= link_to_with_icon 'delete', I18n.t('spree.delete'), "#", class: 'delete-item btn btn-danger btn-sm', data: { 'shipment-number' => shipment.number, 'variant-id' => item.variant.id, action: 'remove'}, title: I18n.t('spree.delete'), no_text: true %>
       <% end %>
     </td>
   </tr>

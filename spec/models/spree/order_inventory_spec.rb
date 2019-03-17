@@ -1,5 +1,6 @@
 module Spree
   describe OrderInventory, type: :model do
+    let!(:store) { create :store }
     let(:order) { Order.create }
 
     subject { OrderInventory.new(order, order.line_items.first) }

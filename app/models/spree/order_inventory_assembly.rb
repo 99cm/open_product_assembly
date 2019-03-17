@@ -1,5 +1,5 @@
 module Spree
-  # This class has basically the same functionality of Spree core OrderInventory
+  # This class has basically the same functionality of Open core OrderInventory
   # except that it takes account of bundle parts and properly creates and
   # removes inventory unit for each parts of a bundle
   class OrderInventoryAssembly < OrderInventory
@@ -14,13 +14,8 @@ module Spree
     def verify(shipment = nil)
       if order.completed? || shipment.present?
         line_item.quantity_by_variant.each do |part, total_parts|
-
-          if Gem.loaded_specs['spree_core'].version >= Gem::Version.create('3.3.0')
-            existing_parts = line_item.inventory_units.where(variant: part).sum(&:quantity)
-          else
-            existing_parts = line_item.inventory_units.where(variant: part).count
-          end
-
+          existing_parts = line_item.inventory_units.where(variant: part).sum(&:quantity)
+ 
           self.variant = part
 
           verify_parts(shipment, total_parts, existing_parts)
@@ -49,9 +44,9 @@ module Spree
       if shipment.present?
         remove_from_shipment(shipment, quantity)
       else
-        order.shipments.each do |shpment|
+        order.shipments.each do |shipment|
           break if quantity == 0
-          quantity -= remove_from_shipment(shpment, quantity)
+          quantity -= remove_from_shipment(shipment, quantity)
         end
       end
     end

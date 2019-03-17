@@ -16,6 +16,7 @@ module Spree
         before do
           bundle.master.parts << [parts, common_product]
         end
+
         let(:bundle_item_quantity) { order.find_line_item_by_variant(bundle_variant).quantity }
 
         describe "#units" do
