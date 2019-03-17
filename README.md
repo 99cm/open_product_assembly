@@ -8,7 +8,8 @@ Create a product which is composed of other products.
 
 1. Add this extension to your Gemfile with this line:
   ```ruby
-  gem 'open_product_assembly', github: '99cm/open-product-assembly'
+  gem 'open_product_assembly', github: '99cm/open_product_assembly'
+  ```
 
 2. Install the gem using Bundler:
   ```ruby
@@ -42,8 +43,8 @@ See corresponding [guidelines][1].
 
 ---
 
-Copyright (c) 2019 [Leo Wang][4] and [contributors][3], released under the [New BSD License][4]
+Copyright (c) 2019 [Leo Wang][3] and [contributors][2], released under the [New BSD License][3]
 
-[1]: https://github.com/99cm/open_product_assembly/blob/master/contributing.html
-[3]: https://github.com/99cm/open_product_assembly/graphs/contributors
-[4]: https://github.com/99cm/open_product_assembly/blob/master/LICENSE.md
+[1]: https://github.com/99cm/open_product_assembly/blob/master/CONTRIBUTING.md
+[2]: https://github.com/99cm/open_product_assembly/graphs/contributors
+[3]: https://github.com/99cm/open_product_assembly/blob/master/LICENSE.md
